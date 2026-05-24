@@ -21,11 +21,8 @@ type BirthdayInvitation = {
   venue: string;
   dressCode: string;
   theme: string;
-  husbandName: string;
-  children: string[];
-  familyName: string;
   celebrantImage: string;
-  familyImage: string;
+  familyMessage?: string;
 };
 
 const fallbackInvitation: BirthdayInvitation = {
@@ -38,11 +35,9 @@ const fallbackInvitation: BirthdayInvitation = {
   venue: "Venue will be announced",
   dressCode: "Elegant / Royal Outfit",
   theme: "40 Years of Grace, Love and Blessings",
-  husbandName: "Akin Arokoyo",
-  children: ["Semilore Arokoyo", "Ibukun Arokoyo", "Korede Arokoyo"],
-  familyName: "The Arokoyo Family",
   celebrantImage: "/images/celebrant.jpg",
-  familyImage: "/images/family.jpg",
+  familyMessage:
+    "The family rejoices with her and joyfully invites you to celebrate this beautiful milestone.",
 };
 
 export default function BirthdayInvitationPage({
@@ -69,7 +64,10 @@ export default function BirthdayInvitationPage({
         const snapshot = await get(ref(database, `invitations/${slug}`));
 
         if (snapshot.exists()) {
-          setInvitation(snapshot.val());
+          setInvitation({
+            ...fallbackInvitation,
+            ...snapshot.val(),
+          });
         } else {
           setInvitation(fallbackInvitation);
         }
@@ -89,7 +87,7 @@ export default function BirthdayInvitationPage({
 
   const addToCalendar = () => {
     const title = `${invitation.celebrantName}'s ${invitation.age}th Birthday Celebration`;
-    const details = `You are invited to celebrate ${invitation.celebrantName}'s ${invitation.age}th birthday.`;
+    const details = `You are invited to celebrate ${invitation.celebrantName}'s ${invitation.age}th birthday. The family rejoices with her.`;
     const start = "20260606T160000";
     const end = "20260606T200000";
 
@@ -154,22 +152,14 @@ export default function BirthdayInvitationPage({
 
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl">
                 With joy and gratitude to God, we invite you to celebrate a
-                beautiful woman, loving wife, caring mother, and blessing to her
-                family as she marks {invitation.age} years of grace, love,
-                beauty, strength, and blessings.
+                beautiful woman as she marks {invitation.age} years of grace,
+                love, beauty, strength, and blessings.
               </p>
 
               <div className="mt-6 rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur-md">
                 <p className="leading-relaxed text-white/75">
-                  This special celebration is lovingly marked by her husband,{" "}
-                  <span className="font-black text-yellow-300">
-                    {invitation.husbandName}
-                  </span>
-                  , together with their beloved children:{" "}
-                  <span className="font-black text-pink-300">
-                    {invitation.children.join(", ")}
-                  </span>
-                  .
+                  {invitation.familyMessage ||
+                    "The family rejoices with her and joyfully invites you to celebrate this beautiful milestone."}
                 </p>
               </div>
 
@@ -181,8 +171,6 @@ export default function BirthdayInvitationPage({
                   displayDate={invitation.displayDate}
                   time={invitation.time}
                   venue={invitation.venue}
-                  husbandName={invitation.husbandName}
-                  children={invitation.children}
                 />
               </div>
 
@@ -197,7 +185,16 @@ export default function BirthdayInvitationPage({
 
             <div className="relative">
               <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-r from-pink-500/40 to-yellow-400/40 blur-2xl" />
-              <BirthdayInvitationCard invitation={invitation} />
+
+              <BirthdayInvitationCard
+                invitation={{
+                  ...invitation,
+                  husbandName: "",
+                  children: [],
+                  familyName: "The family rejoices with her",
+                  familyImage: "",
+                }}
+              />
             </div>
           </div>
 
@@ -230,65 +227,19 @@ export default function BirthdayInvitationPage({
             />
           </div>
 
-          <div className="mt-10 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-2xl">
-            <div className="grid lg:grid-cols-2">
-              <div className="relative min-h-[380px]">
-                <img
-                  src={invitation.familyImage}
-                  alt={invitation.familyName}
-                  className="h-full min-h-[380px] w-full object-cover"
-                />
+          <div className="mt-10 rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 text-center shadow-2xl">
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-pink-300">
+              Celebration
+            </p>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <h3 className="mt-4 text-3xl font-black md:text-5xl">
+              The Family Rejoices With Her
+            </h3>
 
-                <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-sm font-bold uppercase tracking-[0.3em] text-yellow-200">
-                    Family Celebration
-                  </p>
-
-                  <h3 className="mt-3 text-3xl font-black">
-                    {invitation.familyName}
-                  </h3>
-                </div>
-              </div>
-
-              <div className="p-8 lg:p-10">
-                <p className="text-sm font-bold uppercase tracking-[0.3em] text-pink-300">
-                  Family Invitation
-                </p>
-
-                <h3 className="mt-4 text-3xl font-black">
-                  With love from {invitation.familyName}
-                </h3>
-
-                <p className="mt-5 text-lg leading-relaxed text-white/70">
-                  Her loving husband,{" "}
-                  <span className="font-black text-yellow-300">
-                    {invitation.husbandName}
-                  </span>
-                  , and their wonderful children,{" "}
-                  <span className="font-black text-pink-300">
-                    {invitation.children.join(", ")}
-                  </span>
-                  , joyfully invite you to share in this special celebration.
-                </p>
-
-                <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                  {invitation.children.map((child) => (
-                    <div
-                      key={child}
-                      className="rounded-2xl border border-white/10 bg-white/10 p-4 text-center"
-                    >
-                      <p className="text-2xl">💖</p>
-
-                      <p className="mt-2 text-sm font-bold text-white/80">
-                        {child}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-white/70">
+              Join us as we celebrate this wonderful milestone with joy,
+              thanksgiving, laughter, love, and beautiful memories.
+            </p>
           </div>
         </div>
       </section>
@@ -316,8 +267,6 @@ export default function BirthdayInvitationPage({
               displayDate={invitation.displayDate}
               time={invitation.time}
               venue={invitation.venue}
-              husbandName={invitation.husbandName}
-              children={invitation.children}
             />
           </div>
         </div>
