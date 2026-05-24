@@ -1,22 +1,19 @@
 "use client";
 
-import Link from "next/link";
-import { ref, set } from "firebase/database";
-import { useEffect, useMemo, useState } from "react";
 import { database } from "@/lib/firebase";
+import { ref, set } from "firebase/database";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 
 type InviteForm = {
   celebrantName: string;
   age: string;
   birthdayDate: string;
-  husbandName: string;
-  children: string;
   venue: string;
   time: string;
   dressCode: string;
   theme: string;
   celebrantImage: string;
-  familyImage: string;
 };
 
 export default function CreateBirthdayInvitePage() {
@@ -27,14 +24,11 @@ export default function CreateBirthdayInvitePage() {
     celebrantName: "Oluwatosin Mary Arokoyo",
     age: "40",
     birthdayDate: "2026-06-06",
-    husbandName: "Akin Arokoyo",
-    children: "Semilore Arokoyo, Ibukun Arokoyo, Korede Arokoyo",
     venue: "",
     time: "4:00 PM",
     dressCode: "Elegant / Royal Outfit",
     theme: "40 Years of Grace, Love and Blessings",
     celebrantImage: "/images/celebrant.jpg",
-    familyImage: "/images/family.jpg",
   });
 
   useEffect(() => {
@@ -63,11 +57,6 @@ export default function CreateBirthdayInvitePage() {
     try {
       setIsSaving(true);
 
-      const childrenArray = form.children
-        .split(",")
-        .map((child) => child.trim())
-        .filter(Boolean);
-
       const invitationData = {
         slug,
         celebrantName: form.celebrantName,
@@ -78,11 +67,9 @@ export default function CreateBirthdayInvitePage() {
         venue: form.venue || "Venue will be announced",
         dressCode: form.dressCode || "Elegant / Royal Outfit",
         theme: form.theme,
-        husbandName: form.husbandName,
-        children: childrenArray,
-        familyName: "The Arokoyo Family",
         celebrantImage: form.celebrantImage,
-        familyImage: form.familyImage,
+        familyMessage:
+          "The family rejoices with her and joyfully invites you to celebrate this beautiful milestone.",
         createdAt: new Date().toISOString(),
       };
 
@@ -111,6 +98,8 @@ export default function CreateBirthdayInvitePage() {
 Date: ${form.birthdayDate}
 Time: ${form.time || "To be announced"}
 Venue: ${form.venue || "To be announced"}
+
+The family rejoices with her.
 
 Open invitation: ${invitationLink}`;
 
@@ -156,26 +145,59 @@ Open invitation: ${invitationLink}`;
             <h2 className="text-2xl font-black">Invitation Details</h2>
 
             <div className="mt-6 space-y-5">
-              <Input label="Celebrant Name" value={form.celebrantName} onChange={(value) => updateField("celebrantName", value)} />
+              <Input
+                label="Celebrant Name"
+                value={form.celebrantName}
+                onChange={(value) => updateField("celebrantName", value)}
+              />
 
               <div className="grid gap-5 md:grid-cols-2">
-                <Input label="Age" value={form.age} onChange={(value) => updateField("age", value)} />
-                <Input label="Birthday Date" type="date" value={form.birthdayDate} onChange={(value) => updateField("birthdayDate", value)} />
-              </div>
+                <Input
+                  label="Age"
+                  value={form.age}
+                  onChange={(value) => updateField("age", value)}
+                />
 
-              <Input label="Husband / Host Name" value={form.husbandName} onChange={(value) => updateField("husbandName", value)} />
-              <Input label="Children Names" value={form.children} onChange={(value) => updateField("children", value)} />
+                <Input
+                  label="Birthday Date"
+                  type="date"
+                  value={form.birthdayDate}
+                  onChange={(value) => updateField("birthdayDate", value)}
+                />
+              </div>
 
               <div className="grid gap-5 md:grid-cols-2">
-                <Input label="Time" value={form.time} onChange={(value) => updateField("time", value)} />
-                <Input label="Dress Code" value={form.dressCode} onChange={(value) => updateField("dressCode", value)} />
+                <Input
+                  label="Time"
+                  value={form.time}
+                  onChange={(value) => updateField("time", value)}
+                />
+
+                <Input
+                  label="Dress Code"
+                  value={form.dressCode}
+                  onChange={(value) => updateField("dressCode", value)}
+                />
               </div>
 
-              <Input label="Venue" placeholder="Enter event venue" value={form.venue} onChange={(value) => updateField("venue", value)} />
-              <Input label="Theme" value={form.theme} onChange={(value) => updateField("theme", value)} />
+              <Input
+                label="Venue"
+                placeholder="Enter event venue"
+                value={form.venue}
+                onChange={(value) => updateField("venue", value)}
+              />
 
-              <Input label="Celebrant Image Path" value={form.celebrantImage} onChange={(value) => updateField("celebrantImage", value)} />
-              <Input label="Family Image Path" value={form.familyImage} onChange={(value) => updateField("familyImage", value)} />
+              <Input
+                label="Theme"
+                value={form.theme}
+                onChange={(value) => updateField("theme", value)}
+              />
+
+              <Input
+                label="Celebrant Image Path"
+                value={form.celebrantImage}
+                onChange={(value) => updateField("celebrantImage", value)}
+              />
 
               <button
                 type="button"
@@ -226,9 +248,14 @@ Open invitation: ${invitationLink}`;
                 <PreviewRow label="Date" value={form.birthdayDate} />
                 <PreviewRow label="Time" value={form.time || "Not added yet"} />
                 <PreviewRow label="Venue" value={form.venue || "Not added yet"} />
-                <PreviewRow label="Marked By" value={form.husbandName || "Not added yet"} />
-                <PreviewRow label="Children" value={form.children || "Not added yet"} />
-                <PreviewRow label="Dress Code" value={form.dressCode || "Not added yet"} />
+                <PreviewRow
+                  label="Family"
+                  value="The family rejoices with her"
+                />
+                <PreviewRow
+                  label="Dress Code"
+                  value={form.dressCode || "Not added yet"}
+                />
               </div>
             </div>
 
