@@ -8,11 +8,10 @@ export type BirthdayInvitation = {
   venue: string;
   dressCode: string;
   theme: string;
-  husbandName: string;
-  children: string[];
-  familyName: string;
   heroMessage: string;
   invitationMessage: string;
+  celebrantImage?: string;
+  familyMessage?: string;
 };
 
 export const birthdayInvitations: BirthdayInvitation[] = [
@@ -26,13 +25,16 @@ export const birthdayInvitations: BirthdayInvitation[] = [
     venue: "Venue will be announced",
     dressCode: "Elegant / Royal Outfit",
     theme: "40 Years of Grace, Love and Blessings",
-    husbandName: "Akin Arokoyo",
-    children: ["Semilore Arokoyo", "Ibukun Arokoyo", "Korede Arokoyo"],
-    familyName: "The Arokoyo Family",
+    celebrantImage: "/images/celebrant.jpg",
+
     heroMessage:
-      "With joy and gratitude to God, we invite you to celebrate a beautiful woman, loving wife, caring mother, and blessing to her family as she marks 40 years of grace, love, beauty, strength, and blessings.",
+      "With joy and gratitude to God, we invite you to celebrate a beautiful woman as she marks 40 years of grace, love, beauty, strength, and blessings.",
+
     invitationMessage:
-      "Her loving husband, Akin Arokoyo, together with their wonderful children, Semilore Arokoyo, Ibukun Arokoyo, and Korede Arokoyo, joyfully invite you to share in this special celebration.",
+      "Join us for a joyful celebration filled with thanksgiving, laughter, love, and beautiful memories.",
+
+    familyMessage:
+      "The family rejoices with her and joyfully invites you to celebrate this beautiful milestone.",
   },
 ];
 
@@ -45,8 +47,8 @@ export function createBirthdaySlug(name: string) {
     name
       .toLowerCase()
       .trim()
-      .replace(/[^a-z0-9\s-]/g, "")
-      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9\\s-]/g, "")
+      .replace(/\\s+/g, "-")
       .replace(/-+/g, "-") || "birthday-invitation"
   );
 }
