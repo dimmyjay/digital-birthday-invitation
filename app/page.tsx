@@ -11,26 +11,27 @@ export default function HomePage() {
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-pink-100 backdrop-blur-md">
-              🎉 40th Birthday Digital Invitation
+              🎉 Official 40th Birthday Celebration
             </div>
 
             <h1 className="text-4xl font-black leading-tight md:text-6xl">
-              You Are Invited To
+              Join The Celebration Of
               <span className="block bg-gradient-to-r from-pink-400 via-yellow-300 to-purple-400 bg-clip-text text-transparent">
-                Oluwatosin Mary Arokoyo&apos;s 40th Birthday
+                Oluwatosin Mary Arokoyo
               </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75 md:text-xl">
-              Join us as we celebrate Oluwatosin Mary Arokoyo as she marks her
-              glorious 40th birthday with joy, thanksgiving, love, and beautiful
-              memories.
+              You are specially invited to celebrate the 40th birthday of
+              Oluwatosin Mary Arokoyo. Join us for an unforgettable day of joy,
+              thanksgiving, laughter, love, and beautiful memories.
             </p>
 
             <div className="mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur-md">
               <p className="leading-relaxed text-white/70">
-                The family rejoices with her and joyfully invites you to
-                celebrate this beautiful milestone.
+                Celebrate a remarkable milestone as Oluwatosin Mary Arokoyo
+                marks four decades of grace, achievements, blessings, and
+                unforgettable memories.
               </p>
             </div>
 
@@ -53,17 +54,23 @@ export default function HomePage() {
             <div className="mt-10 grid max-w-lg grid-cols-3 gap-4">
               <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-md">
                 <h3 className="text-2xl font-black text-yellow-300">40</h3>
-                <p className="mt-1 text-sm text-white/70">Years of grace</p>
+                <p className="mt-1 text-sm text-white/70">
+                  Years Celebration
+                </p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-md">
-                <h3 className="text-2xl font-black text-pink-300">June 6</h3>
-                <p className="mt-1 text-sm text-white/70">Birthday date</p>
+                <h3 className="text-2xl font-black text-pink-300">June 27</h3>
+                <p className="mt-1 text-sm text-white/70">
+                  Celebration Date
+                </p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-md">
                 <h3 className="text-2xl font-black text-purple-300">2026</h3>
-                <p className="mt-1 text-sm text-white/70">Celebration year</p>
+                <p className="mt-1 text-sm text-white/70">
+                  Celebration Year
+                </p>
               </div>
             </div>
           </div>
@@ -95,17 +102,21 @@ export default function HomePage() {
                     </p>
 
                     <p className="mt-3 text-white/85">
-                      A celebration of life, love, joy, and grace.
+                      Celebrating 40 Years of Grace, Purpose, Excellence and
+                      Blessings.
                     </p>
                   </div>
                 </div>
 
                 <div className="p-6">
                   <div className="grid grid-cols-2 gap-4">
-                    <PreviewBox label="Date" value="June 6, 2026" />
+                    <PreviewBox label="Date of Birth" value="June 6, 1986" />
+                    <PreviewBox
+                      label="Celebration Date"
+                      value="June 27, 2026"
+                    />
                     <PreviewBox label="Age" value="40 Years" />
-                    <PreviewBox label="Time" value="4:00 PM" />
-                    <PreviewBox label="Family" value="Rejoices with her" />
+                    <PreviewBox label="Theme" value="Celebrating Grace" />
                   </div>
 
                   <Link
