@@ -9,8 +9,6 @@ type ShareButtonsProps = {
   displayDate: string;
   time: string;
   venue: string;
-  husbandName?: string;
-  children?: string[];
 };
 
 export default function ShareButtons({
@@ -20,8 +18,6 @@ export default function ShareButtons({
   displayDate,
   time,
   venue,
-  husbandName,
-  children = [],
 }: ShareButtonsProps) {
   const [origin, setOrigin] = useState("");
 
@@ -32,29 +28,28 @@ export default function ShareButtons({
   const finalLink = invitationLink || origin;
 
   const shareText = useMemo(() => {
-    return `You are specially invited to ${celebrantName}'s ${age}th Birthday Celebration.
+    return `🎉 You Are Invited 🎉
 
-Date: ${displayDate}
-Time: ${time}
-Venue: ${venue}
+Join us as we celebrate
 
-${
-  husbandName
-    ? `Marked with love by ${husbandName}${
-        children.length ? `, together with ${children.join(", ")}` : ""
-      }.`
-    : ""
-}
+${celebrantName}
 
-Open invitation: ${finalLink}`;
+on the occasion of her ${age}th Birthday Celebration.
+
+📅 Celebration Date: ${displayDate}
+⏰ Time: ${time}
+📍 Venue: ${venue}
+
+✨ Celebrating 40 Years of Grace, Purpose, Excellence and Blessings.
+
+Open Invitation:
+${finalLink}`;
   }, [
     celebrantName,
     age,
     displayDate,
     time,
     venue,
-    husbandName,
-    children,
     finalLink,
   ]);
 
@@ -63,17 +58,20 @@ Open invitation: ${finalLink}`;
 
     try {
       await navigator.clipboard.writeText(finalLink);
-      alert("Invitation link copied!");
+      alert("Invitation link copied successfully!");
     } catch (error) {
-      console.error("Copy error:", error);
-      alert("Unable to copy link. Please copy it manually.");
+      console.error(error);
+      alert("Unable to copy invitation link.");
     }
   };
 
   const shareWhatsApp = () => {
     if (!finalLink) return;
 
-    window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, "_blank");
+    window.open(
+      `https://wa.me/?text=${encodeURIComponent(shareText)}`,
+      "_blank"
+    );
   };
 
   const nativeShare = async () => {
@@ -91,7 +89,7 @@ Open invitation: ${finalLink}`;
         url: finalLink,
       });
     } catch (error) {
-      console.error("Native share cancelled/error:", error);
+      console.error(error);
     }
   };
 
@@ -103,7 +101,7 @@ Open invitation: ${finalLink}`;
         disabled={!finalLink}
         className="rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 px-6 py-4 font-black text-black shadow-lg shadow-pink-500/25 transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        Share WhatsApp
+        WhatsApp
       </button>
 
       <button
