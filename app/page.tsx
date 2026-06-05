@@ -15,9 +15,9 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-4xl font-black leading-tight md:text-6xl">
-              Join The Celebration Of
+              Join us as we celebrate
               <span className="block bg-gradient-to-r from-pink-400 via-yellow-300 to-purple-400 bg-clip-text text-transparent">
-                Oluwatosin Mary Arokoyo
+                Oluwatosin Arokoyo
               </span>
             </h1>
 
@@ -27,13 +27,13 @@ export default function HomePage() {
               thanksgiving, laughter, love, and beautiful memories.
             </p>
 
-            <div className="mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur-md">
+            {/* <div className="mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur-md">
               <p className="leading-relaxed text-white/70">
                 Celebrate a remarkable milestone as Oluwatosin Mary Arokoyo
                 marks four decades of grace, achievements, blessings, and
                 unforgettable memories.
               </p>
-            </div>
+            </div> */}
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
