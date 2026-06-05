@@ -148,37 +148,18 @@ export default function BirthdayInvitationPage({
           <div className="grid items-center gap-10 lg:grid-cols-2">
             {/* Left Content */}
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-pink-100 backdrop-blur-md">
-                🎉 You Are Specially Invited
-              </div>
-
-              <h1 className="mt-6 text-4xl font-black leading-tight md:text-7xl">
-                {invitation.celebrantName}
+              <h1 className="text-4xl font-black leading-tight md:text-6xl">
+                You are specially invited to{" "}
                 <span className="block bg-gradient-to-r from-pink-300 via-yellow-200 to-purple-300 bg-clip-text text-transparent">
-                  {invitation.age}th Birthday Celebration
+                  {invitation.celebrantName}'s {invitation.age}th Birthday Celebration
                 </span>
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl">
-                Join us as we celebrate {invitation.celebrantName} on her
-                special {invitation.age}th birthday celebration. It will be a beautiful moment
-                of joy, thanksgiving, laughter, love, and unforgettable
-                memories.
+                Join us as we celebrate her on this special day. It will be a
+                beautiful moment of joy, thanksgiving, laughter, love, and
+                unforgettable memories.
               </p>
-
-              <div className="mt-6 rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur-md">
-                <p className="leading-relaxed text-white/75">
-                  Date of Birth:{" "}
-                  <span className="font-black text-yellow-300">
-                    {invitation.dateOfBirth}
-                  </span>
-                  <br />
-                  Celebration Date:{" "}
-                  <span className="font-black text-pink-300">
-                    {invitation.displayDate}
-                  </span>
-                </p>
-              </div>
 
               <div className="mt-8">
                 <ShareButtons
@@ -213,29 +194,8 @@ export default function BirthdayInvitationPage({
               </div>
             </div>
 
-            {/* Right Side - Full Image Display with Text Above */}
+            {/* Right Side - Full Image Display */}
             <div className="relative flex flex-col gap-6">
-              {/* Text Above Image */}
-              <div className="text-center space-y-4 order-first">
-                <p className="text-xs sm:text-sm uppercase tracking-[0.35em] text-white/90 font-bold drop-shadow-lg">
-                  Celebrating
-                </p>
-
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-white drop-shadow-lg">
-                  {invitation.celebrantName}
-                </h2>
-
-                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-300 drop-shadow-lg">
-                  {invitation.age}th Birthday
-                </p>
-
-                <p className="text-xs sm:text-sm text-white/95 max-w-md mx-auto drop-shadow-lg leading-relaxed font-medium">
-                  {invitation.theme}
-                </p>
-
-                <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-yellow-300 to-pink-300 mx-auto drop-shadow-lg" />
-              </div>
-
               {/* Full Height Image with Overlay */}
               <div className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-pink-500 via-purple-700 to-yellow-400 min-h-[600px] sm:min-h-[700px] flex flex-col shadow-2xl shadow-pink-500/30">
                 {/* Background Image - Object Position Top to Show Full Person */}
@@ -307,20 +267,12 @@ export default function BirthdayInvitationPage({
             </div>
           </div>
 
-          <div className="mt-10 rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 text-center shadow-2xl">
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-pink-300">
-              {invitation.age}th Birthday Celebration
-            </p>
-
-            <h3 className="mt-4 text-3xl font-black md:text-5xl">
-              {invitation.theme}
-            </h3>
-
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-white/70">
-              This celebration is specially dedicated to {invitation.celebrantName}
-              as she marks {invitation.age} wonderful years of life, grace, strength,
-              purpose, and blessings.
-            </p>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+            <DetailCard
+              icon="👗"
+              title="Dress Code"
+              value="White with a Touch of Gold"
+            />
           </div>
         </div>
       </section>
@@ -332,7 +284,7 @@ export default function BirthdayInvitationPage({
       <section className="bg-gradient-to-r from-pink-600 via-purple-700 to-yellow-500 px-4 sm:px-6 py-20">
         <div className="mx-auto max-w-5xl text-center">
           <h2 className="text-3xl font-black md:text-5xl">
-            We Look Forward To Celebrating With You
+           Please kindly leave the younger ones at home
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg text-white/85">
