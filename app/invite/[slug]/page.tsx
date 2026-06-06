@@ -95,7 +95,7 @@ export default function BirthdayInvitationPage({
 
   const addToCalendar = () => {
     const title = `${invitation.celebrantName}'s ${invitation.age}th Birthday Celebration`;
-    const details = `You are invited to celebrate ${invitation.celebrantName}'s ${invitation.age}th birthday. Date of birth: ${invitation.dateOfBirth}.`;
+    const details = `You are invited to celebrate ${invitation.celebrantName}'s ${invitation.age}th birthday.`;
     const start = "20260627T160000";
     const end = "20260627T200000";
 
@@ -232,17 +232,16 @@ export default function BirthdayInvitationPage({
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <DetailCard
-              icon="🎂"
-              title="Date of Birth"
-              value={invitation.dateOfBirth}
-            />
-            <DetailCard
               icon="📅"
               title="Celebration Date"
               value={invitation.displayDate}
             />
             <DetailCard icon="⏰" title="Time" value={invitation.time} />
-
+            <DetailCard
+              icon="👗"
+              title="Dress Code"
+              value="White with a Touch of Gold"
+            />
             <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-6 text-center transition hover:bg-white/[0.1]">
               <div className="text-5xl">📍</div>
 
@@ -266,14 +265,6 @@ export default function BirthdayInvitationPage({
               )}
             </div>
           </div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-2">
-            <DetailCard
-              icon="👗"
-              title="Dress Code"
-              value="White with a Touch of Gold"
-            />
-          </div>
         </div>
       </section>
 
@@ -284,7 +275,7 @@ export default function BirthdayInvitationPage({
       <section className="bg-gradient-to-r from-pink-600 via-purple-700 to-yellow-500 px-4 sm:px-6 py-20">
         <div className="mx-auto max-w-5xl text-center">
           <h2 className="text-3xl font-black md:text-5xl">
-           Please kindly leave the younger ones at home
+            Card Admits Only One Person
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg text-white/85">
