@@ -8,7 +8,6 @@ import { useEffect, useMemo, useState } from "react";
 type InviteForm = {
   celebrantName: string;
   age: string;
-  dateOfBirth: string;
   celebrationDate: string;
   venue: string;
   venueLink: string;
@@ -21,7 +20,6 @@ type InviteForm = {
 const defaultForm: InviteForm = {
   celebrantName: "Oluwatosin Mary Arokoyo",
   age: "40",
-  dateOfBirth: "1986-06-06",
   celebrationDate: "2026-06-27",
   venue: "",
   venueLink: "",
@@ -58,7 +56,6 @@ export default function CreateBirthdayInvitePage() {
           setForm({
             celebrantName: saved.celebrantName || defaultForm.celebrantName,
             age: saved.age || defaultForm.age,
-            dateOfBirth: "1986-06-06",
             celebrationDate: "2026-06-27",
             venue: saved.venue || "",
             venueLink: saved.venueLink || "",
@@ -93,7 +90,6 @@ export default function CreateBirthdayInvitePage() {
         slug,
         celebrantName: form.celebrantName.trim(),
         age: form.age.trim(),
-        dateOfBirth: "June 6, 1986",
         birthdayDate: "2026-06-27T14:00:00",
         displayDate: "Saturday, June 27, 2026",
         time: form.time.trim() || "2:00 PM",
@@ -136,16 +132,16 @@ export default function CreateBirthdayInvitePage() {
 
     const message = `🎉 You are specially invited to ${form.celebrantName}'s ${form.age}th Birthday Celebration.
 
-🎂 Date of Birth: June 6, 1986
 📅 Celebration Date: June 27, 2026
 🕐 Time: ${form.time || "2:00 PM"}
 📍 Venue: ${form.venue || "To be announced"}
 🗺️ Google Map: ${form.venueLink || "To be shared"}
+👗 Dress Code: ${form.dressCode}
+
+🎫 Card Admits Only One Person
 
 ✨ Theme:
 ${form.theme}
-
-👗 Dress Code: ${form.dressCode}
 
 🎊 Open invitation:
 ${invitationLink}`;
@@ -208,19 +204,12 @@ ${invitationLink}`;
                 />
 
                 <Input
-                  label="Date Of Birth"
+                  label="Celebration Date"
                   type="date"
-                  value={form.dateOfBirth}
-                  onChange={(value) => updateField("dateOfBirth", value)}
+                  value={form.celebrationDate}
+                  onChange={(value) => updateField("celebrationDate", value)}
                 />
               </div>
-
-              <Input
-                label="Celebration Date"
-                type="date"
-                value={form.celebrationDate}
-                onChange={(value) => updateField("celebrationDate", value)}
-              />
 
               <div className="grid gap-5 grid-cols-2">
                 <Input
@@ -319,7 +308,6 @@ ${invitationLink}`;
               {/* Details Grid Below */}
               <div className="mt-8 space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
-                  <PreviewRow label="Date of Birth" value="June 6, 1986" />
                   <PreviewRow label="Celebration Date" value="June 27, 2026" />
                   <PreviewRow label="Time" value={form.time || "2:00 PM"} />
                   <PreviewRow
@@ -330,6 +318,10 @@ ${invitationLink}`;
 
                 <PreviewRow label="Venue" value={form.venue || "Not added yet"} />
                 <PreviewRow label="Theme" value={form.theme} />
+
+                <div className="rounded-2xl bg-white/10 p-4">
+                  <p className="text-xs text-white/50">🎫 Card Admits Only One Person</p>
+                </div>
 
                 <div className="rounded-2xl bg-white/10 p-4">
                   <p className="text-xs text-white/50">📍 Google Map Link</p>
