@@ -101,16 +101,15 @@ export default function HomePage() {
                       40th Birthday Celebration
                     </p>
 
-                    <p className="mt-3 text-white/85">
+                    {/* <p className="mt-3 text-white/85">
                       Celebrating 40 Years of Grace, Purpose, Excellence and
                       Blessings.
-                    </p>
+                    </p> */}
                   </div>
                 </div>
 
                 <div className="p-6">
                   <div className="grid grid-cols-2 gap-4">
-                    <PreviewBox label="Date of Birth" value="June 6, 1986" />
                     <PreviewBox
                       label="Celebration Date"
                       value="June 27, 2026"
