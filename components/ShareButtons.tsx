@@ -9,6 +9,7 @@ type ShareButtonsProps = {
   displayDate: string;
   time: string;
   venue: string;
+  dressCode?: string;
 };
 
 export default function ShareButtons({
@@ -18,6 +19,7 @@ export default function ShareButtons({
   displayDate,
   time,
   venue,
+  dressCode = "",
 }: ShareButtonsProps) {
   const [origin, setOrigin] = useState("");
 
@@ -28,7 +30,7 @@ export default function ShareButtons({
   const finalLink = invitationLink || origin;
 
   const shareText = useMemo(() => {
-    return `🎉 You Are Invited 🎉
+    let text = `🎉 You Are Invited 🎉
 
 Join us as we celebrate
 
@@ -38,18 +40,25 @@ on the occasion of her ${age}th Birthday Celebration.
 
 📅 Celebration Date: ${displayDate}
 ⏰ Time: ${time}
-📍 Venue: ${venue}
+📍 Venue: ${venue}`;
 
-✨ Celebrating 40 Years of Grace, Purpose, Excellence and Blessings.
+    if (dressCode) {
+      text += `\n👗 Dress Code: ${dressCode}`;
+    }
+
+    text += `\n\n🎫 Card Admits Only One Person
 
 Open Invitation:
 ${finalLink}`;
+
+    return text;
   }, [
     celebrantName,
     age,
     displayDate,
     time,
     venue,
+    dressCode,
     finalLink,
   ]);
 
